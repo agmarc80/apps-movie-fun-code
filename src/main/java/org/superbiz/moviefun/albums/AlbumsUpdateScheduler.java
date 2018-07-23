@@ -28,7 +28,7 @@ public class AlbumsUpdateScheduler {
     }
 
 
-    @Scheduled(initialDelay = 15 * SECONDS, fixedRate = 1 * MINUTES)
+    @Scheduled(initialDelay = 15 * SECONDS, fixedRate = 2 * MINUTES)
     public void run() {
         try {
             logger.debug("Starting albums update");

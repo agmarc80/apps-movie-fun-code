@@ -62,6 +62,7 @@ public class AlbumsUpdater {
             .filter(album -> albumsWeHave.stream().noneMatch(album::isEquivalent));
 
         albumsToCreate.forEach(albumsBean::addAlbum);
+
     }
 
     private void deleteOldAlbums(List<Album> albumsToHave, List<Album> albumsWeHave) {

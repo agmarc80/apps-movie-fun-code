@@ -16,6 +16,8 @@
  */
 package org.superbiz.moviefun.albums;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,9 +31,11 @@ public class AlbumsBean {
 
     @PersistenceContext
     private EntityManager entityManager;
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Transactional
     public void addAlbum(Album album) {
+        logger.info("adding {}",album.getTitle());
         entityManager.persist(album);
     }
 
@@ -47,7 +51,9 @@ public class AlbumsBean {
 
     @Transactional
     public void deleteAlbum(Album album) {
-        entityManager.remove(album);
+        logger.info("removing {}",album.getTitle());
+        Album attachedAlbum = find(album.getId());
+        entityManager.remove(attachedAlbum);
     }
 
     @Transactional
